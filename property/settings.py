@@ -1,4 +1,4 @@
-PROPERT_SEARCH_IDX = 'rdbms_i_roperty_dx'
+PROPERT_SEARCH_IDX = 'property_search_idx'
 
 OPENSEARCH_DSL = {
     'default': {

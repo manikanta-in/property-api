@@ -7,6 +7,7 @@ df1 = {
    'Score':[62,47,55,74,31]}
  
 df1 = pd.DataFrame(df1,columns=['State','Score'])
+https://github.com/Codoc-os/django-opensearch-dsl/blob/master/tests/tests/test_search.py
 print(df1)
 pip install virtualenv
 virtualenv env

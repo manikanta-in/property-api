@@ -25,9 +25,13 @@ class PropertyDocument(Document):
     class Django:
         model = Property  # The model associated with this Document        
         fields = [  # The fields of the model you want to be indexed in Opensearch
+            'name_of_owner',
             'location',
             'latittude',
             'longitude',
+            'near_market_value',
+            'offer_price',
+            'contact_details'
         ]
 
     
