@@ -21,5 +21,5 @@ from django.urls import include,path,re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('property/', include('property.urls')),
-    path("opensearch/", include("opensearch.urls")),
+    # path("opensearch/", include("opensearch.urls")),
 ]
