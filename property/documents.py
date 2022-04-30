@@ -2,13 +2,14 @@
 
 from django_opensearch_dsl import Document
 from django_opensearch_dsl.registries import registry
+from property.settings import PROPERT_SEARCH_IDX
 from .models import Property
 
 
 @registry.register_document
 class PropertyDocument(Document):
     class Index:
-        name = 'property'  # Name of the Opensearch index
+        name = PROPERT_SEARCH_IDX  # Name of the Opensearch index
         settings = {  # See Opensearch Indices API reference for available settings
             'number_of_shards': 1,
             'number_of_replicas': 0
@@ -16,7 +17,7 @@ class PropertyDocument(Document):
         # Configure how the index should be refreshed after an update.
         # See Opensearch documentation for supported options.
         # This per-Document setting overrides settings.OPENSEARCH_DSL_AUTO_REFRESH.
-        auto_refresh = False
+        auto_refresh = True
 
     class Django:
         model = Property  # The model associated with this Document        

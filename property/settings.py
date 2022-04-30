@@ -1,0 +1,1 @@
+PROPERT_SEARCH_IDX = 'rdbms_i_roperty_dx'
