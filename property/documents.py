@@ -1,10 +1,13 @@
 # documents.py
 
-from django_opensearch_dsl import Document
+from traceback import print_tb
+from typing import Optional
+from django_opensearch_dsl import Document, fields
 from django_opensearch_dsl.registries import registry
 from property.settings import PROPERT_SEARCH_IDX
 from .models import Property
-
+from django.db.models import QuerySet
+from opensearch_dsl import Q
 
 @registry.register_document
 class PropertyDocument(Document):
@@ -26,6 +29,10 @@ class PropertyDocument(Document):
             'latittude',
             'longitude',
         ]
+
+    
         # Paginate the django queryset used to populate the index with the specified size
         # This per-Document setting overrides settings.OPENSEARCH_DSL_QUERYSET_PAGINATION.
         queryset_pagination = 5000
+
+    #location = fields.KeywordField()

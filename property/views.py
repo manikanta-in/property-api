@@ -6,8 +6,6 @@ from rest_framework import permissions
 from property.documents import PropertyDocument
 
 
-from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
-
 class PropertyViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -28,6 +26,12 @@ class PropertyDetailsViewSet(viewsets.ModelViewSet):
 class PropertySearchViewSet(viewsets.ModelViewSet):
     document = PropertyDocument
     serializer_class = PropertySerializer
-    queryset = PropertyDocument.search()
     permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        location = self.request.query_params.get('location')
+        print(location)
+        if location != None : 
+            query = {'location': location}
+            return PropertyDocument.search().query('term', **query)
+        return PropertyDocument.search()
