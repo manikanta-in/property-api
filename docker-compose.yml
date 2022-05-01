@@ -59,10 +59,49 @@ services:
      - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true" # disables security dashboards plugin in OpenSearch Dashboards
     networks:
       - opensearch-net
+  logstash:
+    image: opensearchproject/logstash-oss-with-opensearch-output-plugin:latest
+    ports:
+      - "5044:5044"
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: -Xmx256m -Xms256m
+      LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+    networks:
+      - opensearch-net
+    depends_on:
+      - opensearch-node1
+      - opensearch-node2 
+  db:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE='property'
+      - MYSQL_USER='root'
+      - MYSQL_PASSWORD='admin'
+      - MYSQL_ROOT_PASSWORD='admin'
+      - MYSQL_HOST=''
+    volumes:
+      - /tmp/app/mysqld:/var/run/mysqld
+      - ./db:/var/lib/mysql
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /tmp/app/mysqld:/run/mysqld
+    depends_on:
+      - db
+      - logstash
 
 volumes:
   opensearch-data1:
   opensearch-data2:
 
 networks:
-  opensearch-net:
+  opensearch-net:      
