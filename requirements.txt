@@ -8,6 +8,7 @@ django-elasticsearch-dsl-drf==0.22.4
 django-nine==0.2.5
 django-opensearch-dsl==0.2.0
 djangorestframework==3.13.1
+django_rest_swagger-2.2.0
 elasticsearch==7.17.3
 elasticsearch-dsl==7.4.0
 idna==3.3

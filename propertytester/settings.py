@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework_swagger',
-    'opensearch',
     'django_opensearch_dsl',
     # Django Elasticsearch integration
     'django_elasticsearch_dsl',
@@ -89,9 +87,9 @@ DATABASES = {
     # },
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'property',
+        'NAME': 'properties',
         'USER': 'root',
-        'PASSWORD': 'admin',
+        'PASSWORD': 'susmitha',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

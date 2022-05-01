@@ -1,5 +1,5 @@
 from rest_framework import routers
-from django.urls import include,path,re_path
+from django.urls import include, path, re_path
 from property import views 
 #from rest_framework_swagger.views import get_swagger_view
 

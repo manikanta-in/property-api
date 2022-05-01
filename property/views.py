@@ -23,6 +23,7 @@ class PropertyDetailsViewSet(viewsets.ModelViewSet):
     serializer_class = PropertySerializer
     permission_classes = [permissions.IsAuthenticated]
 
+
 class PropertySearchViewSet(viewsets.ModelViewSet):
     document = PropertyDocument
     serializer_class = PropertySerializer
@@ -30,7 +31,7 @@ class PropertySearchViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         location = self.request.query_params.get('location')
-        if location != None : 
+        if location is not None:
             query = {'location': location}
             return PropertyDocument.search().query('term', **query)
         return PropertyDocument.search()
