@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_opensearch_dsl',
+    'rest_framework_swagger',
     # Django Elasticsearch integration
-    'django_elasticsearch_dsl',
+    #'django_elasticsearch_dsl',
     # Django REST framework Elasticsearch integration (this package)
-    'django_elasticsearch_dsl_drf',
-    'property.apps.PropertyConfig',
+    #'django_elasticsearch_dsl_drf',
+    'property',
 ]
 
 MIDDLEWARE = [

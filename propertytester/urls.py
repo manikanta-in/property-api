@@ -15,10 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.schemas import get_schema_view
+from rest_framework.renderers import JSONOpenAPIRenderer
+from django.views.generic import TemplateView
+from django.urls import path
+
+schema_view = get_schema_view(
+    title='Server Monitoring API',
+    url='https://www.example.org/api/',
+    renderer_classes=[JSONOpenAPIRenderer]
+)
 
 
 urlpatterns = [
+    
+    path('openapi/', get_schema_view(
+        title="Property Service",
+        description="API developers hpoing to use our service"
+    ), name='openapi-schema'),
     path('admin/', admin.site.urls),
     path('property/', include('property.urls')),
+     path('docs/', TemplateView.as_view(
+        template_name='documentation.html',
+        extra_context={'schema_url':'openapi-schema'}
+    ), name='swagger-ui'),
     # path("opensearch/", include("opensearch.urls")),
 ]
