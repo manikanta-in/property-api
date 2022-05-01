@@ -6,3 +6,4 @@ db.sqlite3
 *__pycache__/*
 *propertytester/__pycache__/*
 *property/__pycache__/*
+*request_log/__pycache__/*

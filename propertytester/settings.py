@@ -156,11 +156,6 @@ OPENSEARCH_DSL = {
     },
 }
 
-ELASTICSEARCH_DSL = {
-    'default': {
-        'hosts': 'localhost:9200'
-    },
-}
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
