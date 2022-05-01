@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'request_logging.middleware.LoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'propertytester.urls'
@@ -167,4 +168,34 @@ SWAGGER_SETTINGS = {
             'type': 'basic'
         }
     }
+}
+
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'D:/janvik/propertytester/debug.log',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console','file'],
+            'level': 'DEBUG',  # change debug level as appropiate
+            'propagate': False,
+        },
+        'property.views': {
+            'handlers': ['console','file'],
+            'level': 'DEBUG',  # change debug level as appropiate
+            'propagate': False,
+        },
+    },
 }
