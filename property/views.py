@@ -30,7 +30,6 @@ class PropertySearchViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         location = self.request.query_params.get('location')
-        print(location)
         if location != None : 
             query = {'location': location}
             return PropertyDocument.search().query('term', **query)
