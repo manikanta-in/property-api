@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-olf7lu^1ar*)4z++6y)u5@&ikeq)o77@-6ikh)sx%(wchy-bqu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['20.197.3.174']
 
 
 # Application definition
@@ -90,8 +90,8 @@ DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'property',
-        'USER': 'root',
-        'PASSWORD': 'admin',
+        'USER': 'myprop',
+        'PASSWORD': 'MyProp@123',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -146,14 +146,22 @@ REST_FRAMEWORK = {
 }
 
 
+client_cert_path = '/home/azureuser/opensearch-1.3.1/config/kirk.pem'
+client_key_path = '/home/azureuser/opensearch-1.3.1/config/kirk-key.pem'
+
 OPENSEARCH_DSL = {
     'default': {
-        'hosts': 'localhost:9200'
+        'hosts': 'https://10.0.0.4:9200',
+        'http_auth': ("admin", "admin"),
+        'verify_certs': False
     },
     'secure': {
-        'hosts': [{"scheme": "https", "host": "192.30.255.112", "port": 9201}],
-        'http_auth': ("admin", "password"),
+        'hosts': [{"scheme": "https", "host": "10.0.0.4", "port": 9200}],
+        'http_auth': ("admin", "admin"),
         'timeout': 120,
+        'verify_certs': False
+       # 'client_cert_path' : client_cert_path,
+       # 'client_key_path' : client_key_path
     },
 }
 
@@ -179,7 +187,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'D:/janvik/propertytester/debug.log',
+            'filename': '/home/azureuser/property-api/debug.log',
         },
     },
     'loggers': {
