@@ -19,6 +19,10 @@ from rest_framework.schemas import get_schema_view
 from rest_framework.renderers import JSONOpenAPIRenderer
 from django.views.generic import TemplateView
 from django.urls import path
+from django.http import HttpResponse
+import json
+
+from propertytester.views import JSONFileView
 
 schema_view = get_schema_view(
     title='Server Monitoring API',
@@ -26,6 +30,16 @@ schema_view = get_schema_view(
     renderer_classes=[JSONOpenAPIRenderer]
 )
 
+def loadjsonView(json_file = None):
+    # open, generate, fetch the json file
+    # for e.g.:
+    f = open(json_file)
+    json_content = json.load(f)
+    return HttpResponse(
+        json_content,
+        content_type='application/json',
+        status=200
+    )
 
 urlpatterns = [
 
@@ -42,5 +56,6 @@ urlpatterns = [
      path('', TemplateView.as_view(
          template_name='index.html',
          ), name='RightMyProperty'),     
+     path('api/<filename>', JSONFileView.as_view(), name='mostViewedProperties')         
     # path("opensearch/", include("opensearch.urls")),
 ]
