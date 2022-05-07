@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +26,9 @@ SECRET_KEY = 'django-insecure-olf7lu^1ar*)4z++6y)u5@&ikeq)o77@-6ikh)sx%(wchy-bqu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['20.197.3.174']
+ALLOWED_HOSTS = ['localhost']
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 # Application definition
 
 INSTALLED_APPS = [
@@ -90,8 +91,8 @@ DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'property',
-        'USER': 'myprop',
-        'PASSWORD': 'MyProp@123',
+        'USER': 'root',
+        'PASSWORD': 'admin',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -132,8 +133,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [BASE_DIR / "static"]  
+STATIC_ROOT = STATIC_ROOT = BASE_DIR / "staticfiles"  # new
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"  # new
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -151,12 +155,12 @@ client_key_path = '/home/azureuser/opensearch-1.3.1/config/kirk-key.pem'
 
 OPENSEARCH_DSL = {
     'default': {
-        'hosts': 'https://10.0.0.4:9200',
-        'http_auth': ("admin", "admin"),
-        'verify_certs': False
+        'hosts': 'http://localhost:9200',
+        #'http_auth': ("admin", "admin"),
+        #'verify_certs': False
     },
     'secure': {
-        'hosts': [{"scheme": "https", "host": "10.0.0.4", "port": 9200}],
+        'hosts': [{"scheme": "https", "host": "local", "port": 9200}],
         'http_auth': ("admin", "admin"),
         'timeout': 120,
         'verify_certs': False
@@ -187,7 +191,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/azureuser/property-api/debug.log',
+            'filename': './debug.log',
         },
     },
     'loggers': {
