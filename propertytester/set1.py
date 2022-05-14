@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,22 +24,21 @@ SECRET_KEY = 'django-insecure-olf7lu^1ar*)4z++6y)u5@&ikeq)o77@-6ikh)sx%(wchy-bqu
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-REST_SESSION_LOGIN = False
-ALLOWED_HOSTS = ['localhost']
 
+ALLOWED_HOSTS = ['20.197.3.174']
+
+REST_SESSION_LOGIN = False
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000"
+    "http://20.197.3.174:8000"
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8000/"
+    "http://20.197.3.174:8000/"
 ]
 
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 # Application definition
 
 INSTALLED_APPS = [
@@ -104,8 +102,8 @@ DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'property',
-        'USER': 'root',
-        'PASSWORD': 'admin',
+        'USER': 'myprop',
+        'PASSWORD': 'MyProp@123',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -151,6 +149,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]  
 STATIC_ROOT = STATIC_ROOT = BASE_DIR / "staticfiles"  # new
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"  # new
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -162,10 +161,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-    'rest_framework_simplejwt.authentication.JWTAuthentication', 
     'rest_framework.authentication.SessionAuthentication',
     'rest_framework.authentication.BasicAuthentication',
-  
+    'rest_framework_simplejwt.authentication.JWTAuthentication', 
 ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
@@ -177,12 +175,12 @@ client_key_path = '/home/azureuser/opensearch-1.3.1/config/kirk-key.pem'
 
 OPENSEARCH_DSL = {
     'default': {
-        'hosts': 'http://localhost:9200',
-        #'http_auth': ("admin", "admin"),
-        #'verify_certs': False
+        'hosts': 'https://10.0.0.4:9200',
+        'http_auth': ("admin", "admin"),
+        'verify_certs': False
     },
     'secure': {
-        'hosts': [{"scheme": "https", "host": "local", "port": 9200}],
+        'hosts': [{"scheme": "https", "host": "10.0.0.4", "port": 9200}],
         'http_auth': ("admin", "admin"),
         'timeout': 120,
         'verify_certs': False
@@ -213,7 +211,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': './debug.log',
+            'filename': '/home/azureuser/property-api/debug.log',
         },
     },
     'loggers': {

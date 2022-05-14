@@ -14,7 +14,7 @@ class PropertyViewSet(viewsets.ModelViewSet):
     """
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
 
 class PropertyDetailsViewSet(viewsets.ModelViewSet):
@@ -23,13 +23,13 @@ class PropertyDetailsViewSet(viewsets.ModelViewSet):
     """
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
 
 class PropertySearchViewSet(viewsets.ModelViewSet):
     document = PropertyDocument
     serializer_class = PropertySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         location = self.request.query_params.get('location')
