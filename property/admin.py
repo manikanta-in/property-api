@@ -1,8 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-
-from .models import Property
+from .models import Property,PropertyLikes,AdminUser
 
 
 class PropertyAdmin(admin.ModelAdmin):
@@ -10,3 +9,6 @@ class PropertyAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Property, PropertyAdmin)
+
+admin.site.register(PropertyLikes)
+admin.site.register(AdminUser)

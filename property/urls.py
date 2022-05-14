@@ -1,12 +1,14 @@
 from rest_framework import routers
 from django.urls import include, path, re_path
-from property import views 
+from property.views import property,propertylikes
 #from rest_framework_swagger.views import get_swagger_view
 
 
 router = routers.DefaultRouter()
-router.register(r'list', views.PropertyViewSet)
-router.register(r'search', views.PropertySearchViewSet, basename='properties')
+router.register(r'list', property.PropertyViewSet)
+router.register(r'search', property.PropertySearchViewSet, basename='properties')
+router.register(r'/likes/search', propertylikes.PropertyLikesDetailsViewSet)
+
 #router.register(r'(?P<pk>[0-9]+)$', views.PropertyDetailsViewSet)
 #schema_view = get_swagger_view(title='Snippets API')
 

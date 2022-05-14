@@ -1,9 +1,9 @@
-
-from property.models import Property
-from property.serializers import PropertySerializer
+from property.documents import PropertyDocument
 from rest_framework import viewsets
 from rest_framework import permissions
 from property.documents import PropertyDocument
+from property.models import Property
+from property.serilizers.propertyserializer import PropertySerializer
 
 import logging
 logger = logging.getLogger(__name__)
@@ -24,7 +24,7 @@ class PropertyDetailsViewSet(viewsets.ModelViewSet):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
     permission_classes = [permissions.IsAuthenticated]
-
+    
 
 class PropertySearchViewSet(viewsets.ModelViewSet):
     document = PropertyDocument
