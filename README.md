@@ -15,4 +15,6 @@ source env\\Scripts\\activate
 pip3 freeze > requirements.txt  
 python manage.py startapp property
 python manage.py makemigrations property
+python manage.py migrate
+python manage.py loaddata state
 python manage.py runserver
