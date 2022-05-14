@@ -26,13 +26,13 @@ class PropertyDocument(Document):
         model = Property  # The model associated with this Document
         # The fields of the model you want to be indexed in Opensearch
         fields = [
-            'name_of_owner',
-            'location',
-            'latittude',
-            'longitude',
-            'near_market_value',
+            'owner_name',
+            'location_name',
+            'latitute',
+            'longtitue',
+            'market_price',
             'offer_price',
-            'contact_details'
+            'contact_num1'
         ]
 
         """

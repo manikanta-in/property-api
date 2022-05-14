@@ -6,7 +6,7 @@ from .models import Property
 
 
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ("location", "latittude", "longitude",)
+    list_display = ("location_name", "latitute", "longtitue",)
 
 
 admin.site.register(Property, PropertyAdmin)

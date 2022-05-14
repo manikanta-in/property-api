@@ -103,7 +103,7 @@ DATABASES = {
     # },
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'property',
+        'NAME': 'rightmyproperty',
         'USER': 'root',
         'PASSWORD': 'admin',
         'HOST': '127.0.0.1',
